@@ -30,6 +30,7 @@ public class Product {
         productDto.setDescription(this.description);
         productDto.setName(this.name);
         productDto.setPrice(this.price);
+        productDto.setCategory(this.category);
         return productDto;
     }
 
