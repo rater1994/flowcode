@@ -1,0 +1,1 @@
+JMH S 47 com.performance.code.flowcode.Benchmarks.TestBM S 70 com.performance.code.flowcode.Benchmarks.generated.TestBM_init_jmhTest S 4 init S 11 AverageTime E A 1 1 1 E I 1 2 E E I 1 1 E E I 1 1 E E E E E E E E E 
