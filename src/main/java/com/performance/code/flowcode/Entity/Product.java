@@ -4,6 +4,7 @@ import com.performance.code.flowcode.Entity.Dtos.ProductDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import uk.co.jemos.podam.common.PodamExclude;
 
 import javax.persistence.*;
 
@@ -22,6 +23,7 @@ public class Product {
     private String description;
 
     @ManyToOne
+    @PodamExclude
     private Category category;
 
     public ProductDto toProductDto() {
