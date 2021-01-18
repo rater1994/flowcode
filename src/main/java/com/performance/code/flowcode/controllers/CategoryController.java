@@ -15,6 +15,9 @@ public class CategoryController {
 
     private CategoryRepository categoryRepository;
 
+    public CategoryController() {
+    }
+
     public CategoryController(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }

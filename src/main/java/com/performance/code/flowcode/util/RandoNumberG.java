@@ -7,9 +7,9 @@ public class RandoNumberG {
     private RandoNumberG() {
     }
 
-    public static Long generateNumber() {
+    public static int generateNumber() {
         Random rand = new Random();
-        return rand.nextLong();
+        return rand.nextInt(10000);
     }
 
 }
