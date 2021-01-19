@@ -1,6 +1,44 @@
 package com.performance.code.flowcode.controllers.Imperative;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class ImperativeCategoryImpl {
 
-    //https://www.geeksforgeeks.org/java-program-convert-first-character-uppercase-sentence/ for change first letter
+    public void changeFirstLetterFromStringImp() {
+        String name = "abcde";
+        String[] test = new String[name.length()];
+
+        for (int i = 0; i < name.length(); i++) {
+            test[i] = String.valueOf(name.charAt(i));
+            test[0] = String.valueOf(name.charAt(0)).toUpperCase();
+        }
+
+        for (String teser : test) {
+            System.out.print(teser);
+        }
+
+    }
+
+    public List<String> changeFirstLetterFromListImp(List<String> list) {
+        String[] test = new String[list.size()];
+
+        for (int i = 0; i < list.size(); i++) {
+            test[i] = list.get(i);
+            test[i] = String.valueOf(test[i].charAt(0)).toUpperCase() + String.valueOf(test[i].substring(1));
+        }
+        return Arrays.asList(test);
+    }
+
+
+    private static char getFirstChar(String value) {
+        return value.charAt(0);
+    }
+
+    public static void main(String[] args) {
+//        changeAll();
+//        changeList();
+//        System.out.println(getFirstChar("ad"));
+    }
+
 }
