@@ -1,5 +1,6 @@
 package com.performance.code.flowcode.controllers.Imperative;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class ImperativeCategoryImpl {
 
     }
 
-    public List<String> changeFirstLetterFromListImp(List<String> list) {
+    public List<String> changeFirstLetterFromListImpBefore(List<String> list) {
         String[] test = new String[list.size()];
 
         for (int i = 0; i < list.size(); i++) {
@@ -28,6 +29,19 @@ public class ImperativeCategoryImpl {
             test[i] = String.valueOf(test[i].charAt(0)).toUpperCase() + String.valueOf(test[i].substring(1));
         }
         return Arrays.asList(test);
+    }
+
+
+    public List<String> changeFirstLetterFromListImp(List<String> list) {
+        List results = new ArrayList<>();
+        for (String string : list) {
+            results.add(firstLeterToUpperCase(string));
+        }
+        return results;
+    }
+
+    public String firstLeterToUpperCase(String string) {
+        return String.valueOf(string.charAt(0)).toUpperCase() + String.valueOf(string.substring(1));
     }
 
 

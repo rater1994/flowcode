@@ -8,6 +8,7 @@ import com.performance.code.flowcode.Repository.ProductRepository;
 import com.performance.code.flowcode.controllers.CategoryController;
 import com.performance.code.flowcode.controllers.Declarative.DeclarativeCategoryImpl;
 import com.performance.code.flowcode.controllers.Imperative.ImperativeCategoryImpl;
+import com.performance.code.flowcode.util.ExtractDataDb;
 import org.junit.jupiter.api.RepeatedTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +21,9 @@ import java.util.List;
 
 @SpringBootTest
 class FlowcodeApplicationTests {
+
+    @Autowired
+    ExtractDataDb extractDb;
 
     @Autowired
     CategoryController categoryController;
@@ -75,7 +79,7 @@ class FlowcodeApplicationTests {
     //-------------------------------Change first letter to upper-------------------------------------------------------
     @RepeatedTest(1)
     void changeFirstLetterImeperative() {
-        List<Category> categories = categoryRepository.findAll();
+        List<Category> categories = extractDb.gettAllCategory();
         List<String> emptyList = new ArrayList<>();
         ImperativeCategoryImpl imperativeCategory = new ImperativeCategoryImpl();
         for (Category c : categories) {
@@ -103,5 +107,10 @@ class FlowcodeApplicationTests {
     public void testInvocationCount() throws Exception {
         Thread.sleep(100);
         System.out.println("waitForAnswer");
+    }
+
+    @RepeatedTest(1)
+    public void sada() {
+        System.out.println(extractDb.gettAllCategory());
     }
 }
