@@ -1,8 +1,8 @@
 package com.performance.code.flowcode;
 
 import com.performance.code.flowcode.Entity.Category;
-import com.performance.code.flowcode.Entity.Dtos.CategoryDto;
 import com.performance.code.flowcode.Entity.Product;
+import com.performance.code.flowcode.Entity.Users;
 import com.performance.code.flowcode.Repository.CategoryRepository;
 import com.performance.code.flowcode.Repository.ProductRepository;
 import com.performance.code.flowcode.controllers.CategoryController;
@@ -16,7 +16,6 @@ import org.testng.annotations.Test;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @SpringBootTest
@@ -39,17 +38,20 @@ class FlowcodeApplicationTests {
         // code that will be invoked when this test is instantiated
     }
 
-
     @Test
     void contextLoads() {
     }
 
-
-    @RepeatedTest(2)
+    @RepeatedTest(1)
     void testPodam() {
-        CategoryDto category = podamFactory.manufacturePojo(CategoryDto.class);
-        categoryController.addCategory(category);
-        System.out.println("TEST: " + category.getName());
+//        CategoryDto category = podamFactory.manufacturePojo(CategoryDto.class);
+//        categoryController.addCategory(category);
+//        System.out.println("TEST: " + category.getName());
+
+        Users users = podamFactory.manufacturePojo(Users.class);
+
+
+        System.out.println(users.toString());
     }
 
 

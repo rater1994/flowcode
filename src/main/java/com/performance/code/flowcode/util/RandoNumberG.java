@@ -1,6 +1,7 @@
 package com.performance.code.flowcode.util;
 
 import java.util.Random;
+import java.util.stream.LongStream;
 
 public class RandoNumberG {
 
@@ -9,7 +10,8 @@ public class RandoNumberG {
 
     public static int generateNumber() {
         Random rand = new Random();
-        return rand.nextInt(10000);
+        return rand.nextInt();
     }
+
 
 }
