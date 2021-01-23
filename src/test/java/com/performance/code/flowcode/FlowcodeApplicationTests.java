@@ -5,10 +5,15 @@ import com.performance.code.flowcode.Entity.Product;
 import com.performance.code.flowcode.Entity.Users;
 import com.performance.code.flowcode.Repository.CategoryRepository;
 import com.performance.code.flowcode.Repository.ProductRepository;
+import com.performance.code.flowcode.Repository.UsersRepository;
 import com.performance.code.flowcode.controllers.CategoryController;
 import com.performance.code.flowcode.controllers.Declarative.DeclarativeCategoryImpl;
+import com.performance.code.flowcode.controllers.Declarative.DeclarativeUsersImpl;
 import com.performance.code.flowcode.controllers.Imperative.ImperativeCategoryImpl;
-import com.performance.code.flowcode.util.ExtractDataDb;
+import com.performance.code.flowcode.controllers.Imperative.ImperativeUsersImpl;
+import com.performance.code.flowcode.util.RandoNumberG;
+import com.performance.code.flowcode.util.service.ExtractDataDb;
+import com.performance.code.flowcode.util.security.EncryptionUtils;
 import org.junit.jupiter.api.RepeatedTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,13 +22,18 @@ import org.testng.annotations.Test;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootTest
 class FlowcodeApplicationTests {
 
     @Autowired
     ExtractDataDb extractDb;
+
+    @Autowired
+    UsersRepository usersRepository;
 
     @Autowired
     CategoryController categoryController;
@@ -53,11 +63,8 @@ class FlowcodeApplicationTests {
 //        System.out.println("TEST: " + category.getName());
 
         Users users = podamFactory.manufacturePojo(Users.class);
-
-
         System.out.println(users.toString());
     }
-
 
     // Good info: https://stackoverflow.com/questions/4970907/concurrent-junit-testing
 //----------------------------------------------------------------------------------------------------------------------
@@ -67,6 +74,23 @@ class FlowcodeApplicationTests {
         category = podamFactory.manufacturePojo(Category.class);
         categoryRepository.save(category);
     }
+
+    @RepeatedTest(10)
+    void addUsers() {
+        Users users = new Users();
+        Product product = new Product();
+        long randomNumber = RandoNumberG.generateNumber();
+
+        Optional<Product> findProduct = productRepository.findById(randomNumber);
+        if (findProduct.isPresent()) {
+            product = findProduct.get();
+            users = podamFactory.manufacturePojo(Users.class);
+            users.setProducts(Collections.singletonList(product));
+            usersRepository.save(users);
+        }
+
+    }
+
 
     @RepeatedTest(100)
     void testAddProductAndCategory() {
@@ -100,6 +124,24 @@ class FlowcodeApplicationTests {
         List<String> firstChar = DeclarativeCategoryImpl.changeFirstLetterUpper(strings);
         System.out.println(firstChar);
     }
+
+    @RepeatedTest(1)
+    void encryptPasswordDeclarative() {
+        List<Users> users = usersRepository.findAll();
+        DeclarativeUsersImpl declarativeUsers = new DeclarativeUsersImpl();
+        declarativeUsers.encryptPasswordUsersDec(users);
+        usersRepository.saveAll(users);
+    }
+
+    @RepeatedTest(1)
+    void encryptPasswordImperative() {
+        List<Users> users = usersRepository.findAll();
+        ImperativeUsersImpl imperativeUsers = new ImperativeUsersImpl();
+        imperativeUsers.encryptPasswordImperative(users);
+        usersRepository.saveAll(users);
+    }
+
+
     //------------------------------------------------------------------------------------------------------------------
 
 
@@ -112,5 +154,18 @@ class FlowcodeApplicationTests {
     @RepeatedTest(1)
     public void sada() {
         System.out.println(extractDb.gettAllCategory());
+    }
+
+    @RepeatedTest(1)
+    void testEncryptData() {
+        EncryptionUtils encryptionUtils = new EncryptionUtils();
+        List<Users> users = usersRepository.findAll();
+
+        for (Users u : users) {
+            u.setPassword(encryptionUtils.encoder().encode(u.getPassword()));
+            System.out.println("Username: " + u.getFirstName() + " " + u.getPassword());
+        }
+
+
     }
 }

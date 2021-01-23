@@ -4,7 +4,8 @@ import com.performance.code.flowcode.Entity.Dtos.ProductDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamIntValue;
+import uk.co.jemos.podam.common.PodamLongValue;
 
 import javax.persistence.*;
 
@@ -16,6 +17,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @PodamLongValue(minValue = 1, maxValue = 100)
     private Long id;
 
     private String name;
