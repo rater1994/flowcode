@@ -3,6 +3,7 @@ package com.performance.code.flowcode.controllers.Imperative;
 import com.performance.code.flowcode.Entity.Users;
 import com.performance.code.flowcode.util.security.EncryptionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ImperativeUsersImpl {
@@ -15,4 +16,16 @@ public class ImperativeUsersImpl {
         }
     }
 
+    public List<String> findFirstCharacters(List<Users> users, String firstCharacters) {
+        List<String> emptyList = new ArrayList<>();
+        for (Users u : users) {
+            if (u.getFirstName().contains(firstCharacters)) {
+                emptyList.add(u.getFirstName());
+            }
+        }
+        return emptyList;
+    }
+
+
 }
+

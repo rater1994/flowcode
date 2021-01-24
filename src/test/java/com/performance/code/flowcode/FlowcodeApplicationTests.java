@@ -8,8 +8,10 @@ import com.performance.code.flowcode.Repository.ProductRepository;
 import com.performance.code.flowcode.Repository.UsersRepository;
 import com.performance.code.flowcode.controllers.CategoryController;
 import com.performance.code.flowcode.controllers.Declarative.DeclarativeCategoryImpl;
+import com.performance.code.flowcode.controllers.Declarative.DeclarativeProductImpl;
 import com.performance.code.flowcode.controllers.Declarative.DeclarativeUsersImpl;
 import com.performance.code.flowcode.controllers.Imperative.ImperativeCategoryImpl;
+import com.performance.code.flowcode.controllers.Imperative.ImperativeProductImpl;
 import com.performance.code.flowcode.controllers.Imperative.ImperativeUsersImpl;
 import com.performance.code.flowcode.util.RandoNumberG;
 import com.performance.code.flowcode.util.service.ExtractDataDb;
@@ -75,20 +77,23 @@ class FlowcodeApplicationTests {
         categoryRepository.save(category);
     }
 
-    @RepeatedTest(10)
+    @RepeatedTest(1)
     void addUsers() {
         Users users = new Users();
         Product product = new Product();
+        Category category = new Category();
         long randomNumber = RandoNumberG.generateNumber();
 
         Optional<Product> findProduct = productRepository.findById(randomNumber);
-        if (findProduct.isPresent()) {
+        Optional<Category> findCategory = categoryRepository.findById(randomNumber);
+        if (findProduct.isPresent() && findCategory.isPresent()) {
             product = findProduct.get();
+            category = findCategory.get();
             users = podamFactory.manufacturePojo(Users.class);
+            product.setCategory(category);
             users.setProducts(Collections.singletonList(product));
             usersRepository.save(users);
         }
-
     }
 
 
@@ -144,6 +149,51 @@ class FlowcodeApplicationTests {
 
     //------------------------------------------------------------------------------------------------------------------
 
+    @RepeatedTest(1)
+    void findAndSortByPriceDeclarative() {
+        List<Product> products = productRepository.findAll();
+        DeclarativeProductImpl declarativeProduct = new DeclarativeProductImpl();
+        declarativeProduct.findByPrice(products);
+        products.forEach((product) -> System.out.println(product.getPrice()));
+    }
+
+
+    @RepeatedTest(1)
+    void findAndSortByPriceImperative() {
+        List<Product> products = productRepository.findAll();
+        ImperativeProductImpl imperativeProduct = new ImperativeProductImpl();
+        imperativeProduct.findByPrice(products);
+        products.forEach((product -> System.out.println(product.getPrice())));
+    }
+
+    @RepeatedTest(1)
+    void findFirstImperative() {
+        List<Users> users = usersRepository.findAll();
+        ImperativeUsersImpl imperativeUsers = new ImperativeUsersImpl();
+        List<String> a = imperativeUsers.findFirstCharacters(users, "Cyv");
+        System.out.println(a);
+    }
+
+    @RepeatedTest(1)
+    void findFirstDeclarative() {
+        List<Users> users = usersRepository.findAll();
+        DeclarativeUsersImpl declarativeUsers = new DeclarativeUsersImpl();
+        List<Users> cyv = declarativeUsers.findFirstCharacters(users, "Cyv");
+        System.out.println(cyv);
+    }
+
+    @RepeatedTest(1)
+    void filterPricesImperative() {
+        List<Product> products = productRepository.findAll();
+
+        Double price1 = 1.0;
+        Double price2 = 100.0;
+
+
+
+
+    }
+
 
     @Test(threadPoolSize = 4)
     public void testInvocationCount() throws Exception {
@@ -151,10 +201,6 @@ class FlowcodeApplicationTests {
         System.out.println("waitForAnswer");
     }
 
-    @RepeatedTest(1)
-    public void sada() {
-        System.out.println(extractDb.gettAllCategory());
-    }
 
     @RepeatedTest(1)
     void testEncryptData() {

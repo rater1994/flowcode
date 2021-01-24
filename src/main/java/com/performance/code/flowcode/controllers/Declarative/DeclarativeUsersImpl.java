@@ -4,6 +4,7 @@ import com.performance.code.flowcode.Entity.Users;
 import com.performance.code.flowcode.util.security.EncryptionUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DeclarativeUsersImpl {
 
@@ -31,5 +32,11 @@ public class DeclarativeUsersImpl {
                 .filter(users -> !users.getPassword().startsWith("$"))
                 .forEach(users -> users.setPassword(encryptionUtils.encoder().encode(users.getPassword()))
         );
+    }
+
+
+    public List<Users> findFirstCharacters(List<Users> users, String firstCharacters) {
+        return users.stream()
+                .filter(u-> Boolean.parseBoolean(u.getFirstName().toLowerCase()) && u.getFirstName().contains(firstCharacters)).collect(Collectors.toList());
     }
 }
