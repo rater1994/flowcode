@@ -16,4 +16,11 @@ public class DeclarativeProductImpl {
                 .filter(product1 -> product1.getPrice() >= d1 && product1.getPrice() <= d2)
                 .collect(Collectors.toList());
     }
+
+    public void findDuplicate(List<Product> products, String description, String name, Double price) {
+        products.stream()
+                .filter(o1 -> o1.getDescription().equalsIgnoreCase(description))
+                .filter(o2 -> o2.getName().equalsIgnoreCase(name))
+                .filter(o3 -> o3.getPrice().equals(price)).forEach(s1 -> System.out.println(s1.getDescription() + " " + s1.getName()  + " " + s1.getPrice()));
+    }
 }

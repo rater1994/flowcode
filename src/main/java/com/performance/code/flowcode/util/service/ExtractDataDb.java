@@ -32,4 +32,9 @@ public class ExtractDataDb {
     }
 
     public List<Product> getAllProducts() {return productRepository.findAll(); }
+
+    public Long getIdFromDb() {
+        return productRepository.count() + 1;
+    }
+
 }

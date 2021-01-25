@@ -19,6 +19,7 @@ import com.performance.code.flowcode.util.security.EncryptionUtils;
 import org.junit.jupiter.api.RepeatedTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.access.method.P;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -78,7 +79,7 @@ class FlowcodeApplicationTests {
     }
 
     @RepeatedTest(1)
-    void addUsers() {
+    void addUsersWithProducts() {
         Users users = new Users();
         Product product = new Product();
         Category category = new Category();
@@ -96,6 +97,12 @@ class FlowcodeApplicationTests {
         }
     }
 
+    @RepeatedTest(1)
+    void addOnlyUser() {
+        Users users = new Users();
+        users = podamFactory.manufacturePojo(Users.class);
+        usersRepository.save(users);
+    }
 
     @RepeatedTest(100)
     void testAddProductAndCategory() {
@@ -222,7 +229,34 @@ class FlowcodeApplicationTests {
             u.setPassword(encryptionUtils.encoder().encode(u.getPassword()));
             System.out.println("Username: " + u.getFirstName() + " " + u.getPassword());
         }
-
-
     }
+
+
+    @RepeatedTest(50)
+    void mockAddDuplicateData() {
+        Product product = new Product();
+        product.setId(extractDb.getIdFromDb());
+        product.setName("TEST");
+        product.setDescription("TESTDescription");
+        product.setPrice(420.00);
+        productRepository.save(product);
+    }
+
+    @RepeatedTest(1)
+    void findDuplicateImperative() {
+        List<Product> products = productRepository.findAll();
+        ImperativeProductImpl i = new ImperativeProductImpl();
+
+        i.findDuplicate(products, "TESTDescription", "TEST", 420.0);
+    }
+
+    @RepeatedTest(1)
+    void findDuplicateDeclarative() {
+        List<Product> products = productRepository.findAll();
+        DeclarativeProductImpl d = new DeclarativeProductImpl();
+        d.findDuplicate(products, "TESTDescription", "TEST", 420.0);
+    }
+
+
+
 }

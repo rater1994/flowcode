@@ -41,4 +41,17 @@ public class ImperativeProductImpl {
         return filteredPrices;
     }
 
+    public void findDuplicate(List<Product> products, String description, String name, Double price) {
+
+        for (Product product : products) {
+            if (product.getDescription().equalsIgnoreCase(description) &&
+                    product.getName().equalsIgnoreCase(name) &&
+                    product.getPrice().equals(price)) {
+                System.out.println(product.getDescription());
+            }
+        }
+
+    }
+
+
 }
