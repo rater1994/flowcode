@@ -39,6 +39,7 @@ public class Users {
     private String password;
     //    @Email
     private String email;
+
     @OneToMany
     @PodamExclude
     List<Product> products;

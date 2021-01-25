@@ -3,15 +3,12 @@ package com.performance.code.flowcode.controllers.Imperative;
 import com.performance.code.flowcode.Entity.Product;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class ImperativeProductImpl {
 
-    public List<Double> findByPrice(List<Product> products) {
+    public List<Double> sortPrices(List<Product> products) {
         List<Double> finalList = new ArrayList<>();
-        List<Double> lastFasd = new ArrayList<>();
-        Collection<Double> test = new ArrayList<>();
 
 
         for (Product p : products) {
@@ -29,14 +26,19 @@ public class ImperativeProductImpl {
         return null;
     }
 
-    public List<Double> filterByPrices(Double price1, Double price2) {
-        Product product = new Product();
+    public List<Double> filterByPrices(List<Product> products, Double price1, Double price2) {
         List<Double> emptyList = new ArrayList<>();
-
-        if (price1 > price2 && price2 > price1) {
-            emptyList.add(product.getPrice());
+        List<Double> filteredPrices = new ArrayList<>();
+        for (Product p : products) {
+            emptyList.add(p.getPrice());
         }
-        return emptyList;
+
+        for (int i = 0; i < emptyList.size(); i++) {
+            if (price1 <= emptyList.get(i) && price2 >= emptyList.get(i)) {
+                filteredPrices.add(emptyList.get(i));
+            }
+        }
+        return filteredPrices;
     }
 
 }

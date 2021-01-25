@@ -153,7 +153,7 @@ class FlowcodeApplicationTests {
     void findAndSortByPriceDeclarative() {
         List<Product> products = productRepository.findAll();
         DeclarativeProductImpl declarativeProduct = new DeclarativeProductImpl();
-        declarativeProduct.findByPrice(products);
+        declarativeProduct.sortPrices(products);
         products.forEach((product) -> System.out.println(product.getPrice()));
     }
 
@@ -162,7 +162,7 @@ class FlowcodeApplicationTests {
     void findAndSortByPriceImperative() {
         List<Product> products = productRepository.findAll();
         ImperativeProductImpl imperativeProduct = new ImperativeProductImpl();
-        imperativeProduct.findByPrice(products);
+        imperativeProduct.sortPrices(products);
         products.forEach((product -> System.out.println(product.getPrice())));
     }
 
@@ -183,15 +183,26 @@ class FlowcodeApplicationTests {
     }
 
     @RepeatedTest(1)
+    void filterPricesDeclarative() {
+        List<Product> products = productRepository.findAll();
+        DeclarativeProductImpl declarativeProduct = new DeclarativeProductImpl();
+        List<Product> prices = declarativeProduct.filterByPrices(products, 50.00, 500.00);
+        List<Double> d = new ArrayList<>();
+
+        for (Product p : prices) {
+            d.add(p.getPrice());
+        }
+
+        System.out.println(d);
+
+    }
+
+    @RepeatedTest(1)
     void filterPricesImperative() {
         List<Product> products = productRepository.findAll();
-
-        Double price1 = 1.0;
-        Double price2 = 100.0;
-
-
-
-
+        ImperativeProductImpl imperativeProduct = new ImperativeProductImpl();
+        List<Double> prices = imperativeProduct.filterByPrices(products, 50.00, 500.00);
+        System.out.println(prices);
     }
 
 
