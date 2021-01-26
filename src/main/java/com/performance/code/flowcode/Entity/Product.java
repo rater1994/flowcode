@@ -28,6 +28,8 @@ public class Product {
 //    @PodamExclude
     private Category category;
 
+    private int pricemock;
+
     public ProductDto toProductDto() {
         ProductDto productDto = new ProductDto();
         productDto.setId(this.getId());

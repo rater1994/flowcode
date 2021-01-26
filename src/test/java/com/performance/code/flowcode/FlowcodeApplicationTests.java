@@ -1,9 +1,11 @@
 package com.performance.code.flowcode;
 
 import com.performance.code.flowcode.Entity.Category;
+import com.performance.code.flowcode.Entity.MockData;
 import com.performance.code.flowcode.Entity.Product;
 import com.performance.code.flowcode.Entity.Users;
 import com.performance.code.flowcode.Repository.CategoryRepository;
+import com.performance.code.flowcode.Repository.MockDataRepository;
 import com.performance.code.flowcode.Repository.ProductRepository;
 import com.performance.code.flowcode.Repository.UsersRepository;
 import com.performance.code.flowcode.controllers.CategoryController;
@@ -17,6 +19,7 @@ import com.performance.code.flowcode.util.RandoNumberG;
 import com.performance.code.flowcode.util.service.ExtractDataDb;
 import com.performance.code.flowcode.util.security.EncryptionUtils;
 import org.junit.jupiter.api.RepeatedTest;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.access.method.P;
@@ -24,10 +27,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @SpringBootTest
 class FlowcodeApplicationTests {
@@ -46,6 +48,9 @@ class FlowcodeApplicationTests {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    MockDataRepository mockDataRepository;
 
     private PodamFactoryImpl podamFactory = new PodamFactoryImpl();
 
@@ -142,7 +147,7 @@ class FlowcodeApplicationTests {
         List<Users> users = usersRepository.findAll();
         DeclarativeUsersImpl declarativeUsers = new DeclarativeUsersImpl();
         declarativeUsers.encryptPasswordUsersDec(users);
-        usersRepository.saveAll(users);
+//        usersRepository.saveAll(users);
     }
 
     @RepeatedTest(1)
@@ -150,7 +155,7 @@ class FlowcodeApplicationTests {
         List<Users> users = usersRepository.findAll();
         ImperativeUsersImpl imperativeUsers = new ImperativeUsersImpl();
         imperativeUsers.encryptPasswordImperative(users);
-        usersRepository.saveAll(users);
+//        usersRepository.saveAll(users);
     }
 
 
@@ -167,30 +172,42 @@ class FlowcodeApplicationTests {
 
     @RepeatedTest(1)
     void findAndSortByPriceImperative() {
-        List<Product> products = productRepository.findAll();
-        ImperativeProductImpl imperativeProduct = new ImperativeProductImpl();
-        imperativeProduct.sortPrices(products);
-        products.forEach((product -> System.out.println(product.getPrice())));
+        List<MockData> products = mockDataRepository.findAll();
+        int[] t = {products.size()};
+        int p = 0;
+        List<Integer> s = new ArrayList<>();
+
+        for (MockData mockData : products) {
+            p = mockData.getPricemock();
+            s.add(p);
+
+        }
+        for (int i = 0; i < products.size(); i++) {
+            System.out.println(t[i] = p);
+        }
+
     }
+//        ImperativeProductImpl.mergeSort(t, 0, products.size() - 1);
 
     @RepeatedTest(1)
-    void findFirstImperative() {
+    void findUsernameImperative() {
         List<Users> users = usersRepository.findAll();
         ImperativeUsersImpl imperativeUsers = new ImperativeUsersImpl();
-        List<String> a = imperativeUsers.findFirstCharacters(users, "Cyv");
+        List<Users> a = imperativeUsers.findUsername(users, "Xu");
         System.out.println(a);
     }
 
     @RepeatedTest(1)
-    void findFirstDeclarative() {
+    void findUsernameDeclarative() {
         List<Users> users = usersRepository.findAll();
         DeclarativeUsersImpl declarativeUsers = new DeclarativeUsersImpl();
-        List<Users> cyv = declarativeUsers.findFirstCharacters(users, "Cyv");
+        List<Users> cyv = declarativeUsers.findUsername(users, "Xu");
         System.out.println(cyv);
+
     }
 
     @RepeatedTest(1)
-    void filterPricesDeclarative() {
+    void filterPriceFromXtoYDeclarative() {
         List<Product> products = productRepository.findAll();
         DeclarativeProductImpl declarativeProduct = new DeclarativeProductImpl();
         List<Product> prices = declarativeProduct.filterByPrices(products, 50.00, 500.00);
@@ -205,7 +222,7 @@ class FlowcodeApplicationTests {
     }
 
     @RepeatedTest(1)
-    void filterPricesImperative() {
+    void filterPriceFromXtoYImperative() {
         List<Product> products = productRepository.findAll();
         ImperativeProductImpl imperativeProduct = new ImperativeProductImpl();
         List<Double> prices = imperativeProduct.filterByPrices(products, 50.00, 500.00);
@@ -231,7 +248,7 @@ class FlowcodeApplicationTests {
         }
     }
 
-
+    //-----------------------------------------------------MOCK DATA--------------------------------------------------------
     @RepeatedTest(50)
     void mockAddDuplicateData() {
         Product product = new Product();
@@ -242,12 +259,19 @@ class FlowcodeApplicationTests {
         productRepository.save(product);
     }
 
+    @RepeatedTest(400)
+    void mockAddPriceInt() {
+        MockData mockData = new MockData();
+        mockData = podamFactory.manufacturePojo(MockData.class);
+        mockDataRepository.save(mockData);
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------
     @RepeatedTest(1)
     void findDuplicateImperative() {
         List<Product> products = productRepository.findAll();
-        ImperativeProductImpl i = new ImperativeProductImpl();
-
-        i.findDuplicate(products, "TESTDescription", "TEST", 420.0);
+        ImperativeProductImpl imperativeProduct = new ImperativeProductImpl();
+        imperativeProduct.findDuplicate(products, "TESTDescription", "TEST", 420.0);
     }
 
     @RepeatedTest(1)
@@ -258,5 +282,17 @@ class FlowcodeApplicationTests {
     }
 
 
+    @RepeatedTest(1)
+    void deleteDollarFrompw() {
+        List<Users> users = usersRepository.findAll();
+        List<Users> emptyList = new ArrayList<>();
+
+        users.forEach(users1 -> users1.setPassword(users1.getPassword().replace("$", "")));
+
+
+        for (Users u : users) {
+            usersRepository.save(u);
+        }
+    }
 
 }

@@ -16,16 +16,13 @@ public class ImperativeUsersImpl {
         }
     }
 
-    public List<String> findFirstCharacters(List<Users> users, String firstCharacters) {
-        List<String> emptyList = new ArrayList<>();
+    public List<Users> findUsername(List<Users> users, String firstCharacters) {
+        List<Users> emptyList = new ArrayList<>();
         for (Users u : users) {
-            if (u.getFirstName().contains(firstCharacters)) {
-                emptyList.add(u.getFirstName());
+            if (u.getUsername().contains(firstCharacters)) {
+                emptyList.add(u);
             }
         }
         return emptyList;
     }
-
-
 }
-

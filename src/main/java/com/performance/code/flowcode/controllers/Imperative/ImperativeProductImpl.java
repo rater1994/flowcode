@@ -7,24 +7,54 @@ import java.util.List;
 
 public class ImperativeProductImpl {
 
-    public List<Double> sortPrices(List<Product> products) {
-        List<Double> finalList = new ArrayList<>();
 
+    public static void mergeSort(int[] array, int low, int high) {
+        if (high <= low) return;
 
-        for (Product p : products) {
-            finalList.add(p.getPrice());
-        }
+        int mid = (low + high) / 2;
+        mergeSort(array, low, mid);
+        mergeSort(array, mid + 1, high);
+        merge(array, low, mid, high);
+    }
 
-        for (int i = 1; i < products.size(); i++) {
-            if (finalList.get(i) > finalList.get(i + 1)) {
-                finalList.add(finalList.get(i));
-            } else {
-                finalList.remove(i);
-                finalList.add(finalList.get(i + 1));
+    public static void merge(int[] array, int low, int mid, int high) {
+        // Creating temporary subarrays
+        int leftArray[] = new int[mid - low + 1];
+        int rightArray[] = new int[high - mid];
+
+        // Copying our subarrays into temporaries
+        for (int i = 0; i < leftArray.length; i++)
+            leftArray[i] = (int) array[low + i];
+        for (int i = 0; i < rightArray.length; i++)
+            rightArray[i] = (int) array[mid + i + 1];
+
+        // Iterators containing current index of temp subarrays
+        int leftIndex = 0;
+        int rightIndex = 0;
+
+        // Copying from leftArray and rightArray back into array
+        for (int i = low; i < high + 1; i++) {
+            // If there are still uncopied elements in R and L, copy minimum of the two
+            if (leftIndex < leftArray.length && rightIndex < rightArray.length) {
+                if (leftArray[leftIndex] < rightArray[rightIndex]) {
+                    array[i] = leftArray[leftIndex];
+                    leftIndex++;
+                } else {
+                    array[i] = rightArray[rightIndex];
+                    rightIndex++;
+                }
+            } else if (leftIndex < leftArray.length) {
+                // If all elements have been copied from rightArray, copy rest of leftArray
+                array[i] = leftArray[leftIndex];
+                leftIndex++;
+            } else if (rightIndex < rightArray.length) {
+                // If all elements have been copied from leftArray, copy rest of rightArray
+                array[i] = rightArray[rightIndex];
+                rightIndex++;
             }
         }
-        return null;
     }
+
 
     public List<Double> filterByPrices(List<Product> products, Double price1, Double price2) {
         List<Double> emptyList = new ArrayList<>();
@@ -47,11 +77,9 @@ public class ImperativeProductImpl {
             if (product.getDescription().equalsIgnoreCase(description) &&
                     product.getName().equalsIgnoreCase(name) &&
                     product.getPrice().equals(price)) {
-                System.out.println(product.getDescription());
+                System.out.println(product.getDescription() + " " + product.getName() + " " + product.getPrice());
             }
         }
 
     }
-
-
 }
