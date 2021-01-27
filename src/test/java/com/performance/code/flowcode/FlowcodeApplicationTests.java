@@ -13,6 +13,7 @@ import com.performance.code.flowcode.controllers.Declarative.DeclarativeCategory
 import com.performance.code.flowcode.controllers.Declarative.DeclarativeProductImpl;
 import com.performance.code.flowcode.controllers.Declarative.DeclarativeUsersImpl;
 import com.performance.code.flowcode.controllers.Imperative.ImperativeCategoryImpl;
+import com.performance.code.flowcode.controllers.Imperative.ImperativeMockDataImpl;
 import com.performance.code.flowcode.controllers.Imperative.ImperativeProductImpl;
 import com.performance.code.flowcode.controllers.Imperative.ImperativeUsersImpl;
 import com.performance.code.flowcode.util.RandoNumberG;
@@ -173,21 +174,15 @@ class FlowcodeApplicationTests {
     @RepeatedTest(1)
     void findAndSortByPriceImperative() {
         List<MockData> products = mockDataRepository.findAll();
-        int[] t = {products.size()};
-        int p = 0;
-        List<Integer> s = new ArrayList<>();
+        List<Integer> prices = new ArrayList<>();
+        ImperativeMockDataImpl imperativeMockData = new ImperativeMockDataImpl();
 
-        for (MockData mockData : products) {
-            p = mockData.getPricemock();
-            s.add(p);
-
+        for (MockData mockData: products) {
+            prices.add(mockData.getPricemock());
         }
-        for (int i = 0; i < products.size(); i++) {
-            System.out.println(t[i] = p);
-        }
+//        imperativeMockData.sortPrices(prices)
 
     }
-//        ImperativeProductImpl.mergeSort(t, 0, products.size() - 1);
 
     @RepeatedTest(1)
     void findUsernameImperative() {
@@ -217,7 +212,7 @@ class FlowcodeApplicationTests {
             d.add(p.getPrice());
         }
 
-        System.out.println(d);
+//        System.out.println(d);
 
     }
 
