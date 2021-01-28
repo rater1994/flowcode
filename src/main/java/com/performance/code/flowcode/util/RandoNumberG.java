@@ -11,13 +11,4 @@ public class RandoNumberG {
         SecureRandom rand = new SecureRandom();
         return rand.nextInt(100);
     }
-
-    public void generateUniqueNumber() {
-
-    }
-
-    public static void main(String[] args) {
-        System.out.println(generateNumber());
-    }
-
 }

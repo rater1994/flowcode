@@ -1,6 +1,7 @@
 package com.performance.code.flowcode.controllers.Imperative;
 
 import com.performance.code.flowcode.Entity.Product;
+import com.performance.code.flowcode.util.StringsUtilsTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,5 +33,19 @@ public class ImperativeProductImpl {
             }
         }
 
+    }
+
+    public void checkInconsistentData(List<String> data) {
+        List<String> emptyString = new ArrayList<>();
+
+        StringsUtilsTool utilsTool = new StringsUtilsTool();
+
+        boolean b = utilsTool.regexFind(data);
+
+        if (b) {
+            for (String s1 : data)
+                emptyString.add(s1.replaceAll(StringsUtilsTool.REGEX, s1));
+        }
+        System.out.println(emptyString);
     }
 }

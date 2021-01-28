@@ -177,7 +177,7 @@ class FlowcodeApplicationTests {
         List<Integer> prices = new ArrayList<>();
         ImperativeMockDataImpl imperativeMockData = new ImperativeMockDataImpl();
 
-        for (MockData mockData: products) {
+        for (MockData mockData : products) {
             prices.add(mockData.getPricemock());
         }
 //        imperativeMockData.sortPrices(prices)
@@ -280,14 +280,23 @@ class FlowcodeApplicationTests {
     @RepeatedTest(1)
     void deleteDollarFrompw() {
         List<Users> users = usersRepository.findAll();
-        List<Users> emptyList = new ArrayList<>();
-
         users.forEach(users1 -> users1.setPassword(users1.getPassword().replace("$", "")));
-
-
         for (Users u : users) {
             usersRepository.save(u);
         }
     }
 
+    @RepeatedTest(1)
+    void checkInconsistentDataImperative() {
+        List<Product> products = productRepository.findAll();
+        List<String> emptyList = new ArrayList<>();
+
+        for (Product p : products) {
+            emptyList.add(p.getDescription());
+        }
+
+        ImperativeProductImpl imperativeProduct = new ImperativeProductImpl();
+        imperativeProduct.checkInconsistentData(emptyList);
+        System.out.println(emptyList);
+    }
 }
