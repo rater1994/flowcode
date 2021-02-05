@@ -1,4 +1,4 @@
-package com.performance.code.flowcode.controllers.Declarative;
+package com.performance.code.flowcode.Controllers.Declarative;
 
 import java.util.List;
 import java.util.function.Function;

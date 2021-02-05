@@ -1,4 +1,4 @@
-package com.performance.code.flowcode.controllers.Imperative;
+package com.performance.code.flowcode.Controllers.Imperative;
 
 import com.performance.code.flowcode.Entity.Product;
 import com.performance.code.flowcode.util.StringsUtilsTool;

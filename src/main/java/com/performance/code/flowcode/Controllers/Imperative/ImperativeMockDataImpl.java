@@ -1,9 +1,4 @@
-package com.performance.code.flowcode.controllers.Imperative;
-
-import com.performance.code.flowcode.Entity.MockData;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.performance.code.flowcode.Controllers.Imperative;
 
 public class ImperativeMockDataImpl {
 

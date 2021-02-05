@@ -1,4 +1,4 @@
-package com.performance.code.flowcode.controllers.Declarative;
+package com.performance.code.flowcode.Controllers.Declarative;
 
 import com.performance.code.flowcode.Entity.Users;
 import com.performance.code.flowcode.util.security.EncryptionUtils;

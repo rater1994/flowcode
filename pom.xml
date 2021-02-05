@@ -97,6 +97,7 @@
             <version>6.14.3</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>uk.co.jemos.podam</groupId>
             <artifactId>podam</artifactId>

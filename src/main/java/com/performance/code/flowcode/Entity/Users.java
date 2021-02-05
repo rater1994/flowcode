@@ -5,18 +5,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import uk.co.jemos.podam.common.PodamExclude;
-import uk.co.jemos.podam.common.PodamIntValue;
-import uk.co.jemos.podam.common.PodamLongValue;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import java.util.Date;
 import java.util.List;
 
-@Entity
+
 @Getter
 @Setter
 @NoArgsConstructor
+
+@Entity
 public class Users {
 
     @Id
@@ -32,12 +33,10 @@ public class Users {
     private int age;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-
     private Date timestamp;
-
     private String username;
     private String password;
-    //    @Email
+    @Email
     private String email;
 
     @OneToMany

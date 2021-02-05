@@ -8,29 +8,25 @@ import com.performance.code.flowcode.Repository.CategoryRepository;
 import com.performance.code.flowcode.Repository.MockDataRepository;
 import com.performance.code.flowcode.Repository.ProductRepository;
 import com.performance.code.flowcode.Repository.UsersRepository;
-import com.performance.code.flowcode.controllers.CategoryController;
-import com.performance.code.flowcode.controllers.Declarative.DeclarativeCategoryImpl;
-import com.performance.code.flowcode.controllers.Declarative.DeclarativeProductImpl;
-import com.performance.code.flowcode.controllers.Declarative.DeclarativeUsersImpl;
-import com.performance.code.flowcode.controllers.Imperative.ImperativeCategoryImpl;
-import com.performance.code.flowcode.controllers.Imperative.ImperativeMockDataImpl;
-import com.performance.code.flowcode.controllers.Imperative.ImperativeProductImpl;
-import com.performance.code.flowcode.controllers.Imperative.ImperativeUsersImpl;
+import com.performance.code.flowcode.Controllers.CategoryController;
+import com.performance.code.flowcode.Controllers.Declarative.DeclarativeCategoryImpl;
+import com.performance.code.flowcode.Controllers.Declarative.DeclarativeProductImpl;
+import com.performance.code.flowcode.Controllers.Declarative.DeclarativeUsersImpl;
+import com.performance.code.flowcode.Controllers.Imperative.ImperativeCategoryImpl;
+import com.performance.code.flowcode.Controllers.Imperative.ImperativeMockDataImpl;
+import com.performance.code.flowcode.Controllers.Imperative.ImperativeProductImpl;
+import com.performance.code.flowcode.Controllers.Imperative.ImperativeUsersImpl;
 import com.performance.code.flowcode.util.RandoNumberG;
 import com.performance.code.flowcode.util.service.ExtractDataDb;
 import com.performance.code.flowcode.util.security.EncryptionUtils;
 import org.junit.jupiter.api.RepeatedTest;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.access.method.P;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @SpringBootTest
 class FlowcodeApplicationTests {
@@ -151,13 +147,12 @@ class FlowcodeApplicationTests {
 //        usersRepository.saveAll(users);
     }
 
-    @RepeatedTest(1)
-    void encryptPasswordImperative() {
-        List<Users> users = usersRepository.findAll();
-        ImperativeUsersImpl imperativeUsers = new ImperativeUsersImpl();
-        imperativeUsers.encryptPasswordImperative(users);
-//        usersRepository.saveAll(users);
-    }
+//    @RepeatedTest(1)
+//    void encryptPasswordImperative() {
+//        List<Users> users = usersRepository.findAll();
+//        ImperativeUsersImpl imperativeUsers.encryptPasswordImperative(users);
+////        usersRepository.saveAll(users);
+//    }
 
 
     //------------------------------------------------------------------------------------------------------------------
@@ -184,13 +179,13 @@ class FlowcodeApplicationTests {
 
     }
 
-    @RepeatedTest(1)
-    void findUsernameImperative() {
-        List<Users> users = usersRepository.findAll();
-        ImperativeUsersImpl imperativeUsers = new ImperativeUsersImpl();
-        List<Users> a = imperativeUsers.findUsername(users, "Xu");
-        System.out.println(a);
-    }
+//    @RepeatedTest(1)
+//    void findUsernameImperative() {
+//        List<Users> users = usersRepository.findAll();
+//        ImperativeUsersImpl imperativeUsers = new ImperativeUsersImpl();
+//        List<Users> a = imperativeUsers.findUsername(users, "Xu");
+//        System.out.println(a);
+//    }
 
     @RepeatedTest(1)
     void findUsernameDeclarative() {

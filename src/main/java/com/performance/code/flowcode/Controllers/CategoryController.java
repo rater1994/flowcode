@@ -1,4 +1,4 @@
-package com.performance.code.flowcode.controllers;
+package com.performance.code.flowcode.Controllers;
 
 import com.performance.code.flowcode.Entity.Category;
 import com.performance.code.flowcode.Entity.Dtos.CategoryDto;
