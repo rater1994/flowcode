@@ -3,6 +3,7 @@ package com.performance.code.flowcode.Controllers.Imperative;
 import com.performance.code.flowcode.Entity.Users;
 import com.performance.code.flowcode.Repository.UsersRepository;
 import com.performance.code.flowcode.util.security.EncryptionUtils;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -36,18 +37,13 @@ public class ImperativeUsersImpl {
         return emptyList;
     }
 
-    public List<String> changeFirstLetterFromListImp() {
-        List<Users> getAllUsers = usersRepository.findAll();
-        List<String> allFirstNames = new ArrayList<>();
-
-        for (Users users : getAllUsers) {
-            List<Users> findFirstNames = usersRepository.findByLastName(users.getFirstName());
-
-            usersRepository.saveAll(findFirstNames);
+    public void changeFirstLetterUsers() {
+        List<Users> allUsers = usersRepository.findAll();
+        for (Users allUser : allUsers) {
+            allUser.setFirstName(changeFirstLetterToUpper(allUser.getFirstName()));
+            allUser.setLastName(changeFirstLetterToUpper(allUser.getLastName()));
+//            usersRepository.save(allUser);
         }
-
-
-        return allFirstNames;
     }
 
     private String changeFirstLetterToUpper(String string) {
@@ -55,4 +51,10 @@ public class ImperativeUsersImpl {
     }
 
 
+    //Classic for
+//        for (int i = 0; i < allUsers.size(); i++) {
+//            allUsers.get(i).setLastName(changeFirstLetterToUpper(allUsers.get(i).getLastName()));
+//            allUsers.get(i).setFirstName(changeFirstLetterToUpper(allUsers.get(i).getFirstName()));
+//            usersRepository.save(allUsers.get(i));
+//        }
 }

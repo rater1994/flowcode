@@ -1,6 +1,6 @@
 package com.performance.code.flowcode.TestsUsersMethods;
 
-import com.performance.code.flowcode.Controllers.Imperative.ImperativeUsersImpl;
+import com.performance.code.flowcode.Controllers.Declarative.DeclarativeUsersImpl;
 import com.performance.code.flowcode.Repository.UsersRepository;
 import org.junit.jupiter.api.RepeatedTest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +9,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 @SpringBootTest
-class ImperativeUserTests {
+public class DeclarativeUserTests {
 
     @Autowired
-    ImperativeUsersImpl imperativeUsers;
+    DeclarativeUsersImpl declarativeUsersImpl;
 
     @Autowired
     UsersRepository usersRepository;
@@ -25,10 +25,10 @@ class ImperativeUserTests {
     void contextLoads() {
     }
 
-
     @RepeatedTest(1)
-    void testImperativeUser() {
-        imperativeUsers.changeFirstLetterUsers();
+    void testChangeFirstLetterDeclarativeUser() {
+        declarativeUsersImpl.changeFirstLetterUserDeclarative();
     }
+
 
 }

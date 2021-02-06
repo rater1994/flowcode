@@ -19,13 +19,17 @@ import com.performance.code.flowcode.Controllers.Imperative.ImperativeUsersImpl;
 import com.performance.code.flowcode.util.RandoNumberG;
 import com.performance.code.flowcode.util.service.ExtractDataDb;
 import com.performance.code.flowcode.util.security.EncryptionUtils;
+import com.sun.jmx.snmp.Timestamp;
 import org.junit.jupiter.api.RepeatedTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import sun.security.timestamp.TimestampToken;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
+import javax.xml.crypto.Data;
+import java.sql.Time;
 import java.util.*;
 
 @SpringBootTest
@@ -48,6 +52,8 @@ class FlowcodeApplicationTests {
 
     @Autowired
     MockDataRepository mockDataRepository;
+
+     private static final int MILION = 1000000000;
 
     private PodamFactoryImpl podamFactory = new PodamFactoryImpl();
 
@@ -99,10 +105,12 @@ class FlowcodeApplicationTests {
         }
     }
 
-    @RepeatedTest(1)
+    @RepeatedTest(10000)
     void addOnlyUser() {
         Users users = new Users();
         users = podamFactory.manufacturePojo(Users.class);
+        users.setEmail(podamFactory.manufacturePojo(String.class) + "@" + ".com");
+        users.setTimestamp(podamFactory.manufacturePojo(Time.class));
         usersRepository.save(users);
     }
 
@@ -139,13 +147,13 @@ class FlowcodeApplicationTests {
         System.out.println(firstChar);
     }
 
-    @RepeatedTest(1)
-    void encryptPasswordDeclarative() {
-        List<Users> users = usersRepository.findAll();
-        DeclarativeUsersImpl declarativeUsers = new DeclarativeUsersImpl();
-        declarativeUsers.encryptPasswordUsersDec(users);
-//        usersRepository.saveAll(users);
-    }
+//    @RepeatedTest(1)
+//    void encryptPasswordDeclarative() {
+//        List<Users> users = usersRepository.findAll();
+//        DeclarativeUsersImpl declarativeUsers = new DeclarativeUsersImpl();
+//        declarativeUsers.encryptPasswordUsersDec(users);
+////        usersRepository.saveAll(users);
+//    }
 
 //    @RepeatedTest(1)
 //    void encryptPasswordImperative() {
@@ -187,14 +195,14 @@ class FlowcodeApplicationTests {
 //        System.out.println(a);
 //    }
 
-    @RepeatedTest(1)
-    void findUsernameDeclarative() {
-        List<Users> users = usersRepository.findAll();
-        DeclarativeUsersImpl declarativeUsers = new DeclarativeUsersImpl();
-        List<Users> cyv = declarativeUsers.findUsername(users, "Xu");
-        System.out.println(cyv);
-
-    }
+//    @RepeatedTest(1)
+//    void findUsernameDeclarative() {
+//        List<Users> users = usersRepository.findAll();
+//        DeclarativeUsersImpl declarativeUsers = new DeclarativeUsersImpl();
+//        List<Users> cyv = declarativeUsers.findUsername(users, "Xu");
+//        System.out.println(cyv);
+//
+//    }
 
     @RepeatedTest(1)
     void filterPriceFromXtoYDeclarative() {

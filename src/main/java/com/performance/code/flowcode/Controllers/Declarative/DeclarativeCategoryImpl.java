@@ -1,13 +1,14 @@
 package com.performance.code.flowcode.Controllers.Declarative;
 
+import com.performance.code.flowcode.Repository.UsersRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class DeclarativeCategoryImpl {
 
-    public DeclarativeCategoryImpl() {
-    }
 
     public static List<String> changeFirstLetterUpper(List<String> value) {
         Function<String, String> firstLetterToUpperCase = strings -> strings.substring(0, 1).toUpperCase() + strings.substring(1);
