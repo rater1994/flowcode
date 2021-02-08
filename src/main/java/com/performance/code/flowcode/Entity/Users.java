@@ -41,13 +41,9 @@ public class Users {
 //    @Email
     private String email;
 
-    @OneToMany
-    @PodamExclude
-    List<Product> products;
-
     @Override
     public String toString() {
-        return "Firt name: " + firstName +
+        return "First name: " + firstName +
                 " \nLast name: " + lastName +
                 "\nCNP: " + cnp +
                 "\nAge: " + age +
@@ -57,4 +53,8 @@ public class Users {
                 "\nUsername: " + username +
                 "\nPassword: " + password;
     }
+
+    @OneToMany
+    @PodamExclude
+    List<Product> products;
 }

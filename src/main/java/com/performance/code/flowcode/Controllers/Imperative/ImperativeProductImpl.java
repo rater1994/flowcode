@@ -1,27 +1,54 @@
 package com.performance.code.flowcode.Controllers.Imperative;
 
+import com.performance.code.flowcode.Entity.Category;
 import com.performance.code.flowcode.Entity.Product;
+import com.performance.code.flowcode.Repository.CategoryRepository;
+import com.performance.code.flowcode.Repository.ProductRepository;
 import com.performance.code.flowcode.util.StringsUtilsTool;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ImperativeProductImpl {
 
-    public List<Double> filterByPrices(List<Product> products, Double price1, Double price2) {
-        List<Double> emptyList = new ArrayList<>();
-        List<Double> filteredPrices = new ArrayList<>();
-        for (Product p : products) {
-            emptyList.add(p.getPrice());
-        }
+    private ProductRepository productRepository;
+    private CategoryRepository categoryRepository;
 
-        for (Double anEmptyList : emptyList) {
-            if (price1 <= anEmptyList && price2 >= anEmptyList) {
-                filteredPrices.add(anEmptyList);
+    public ImperativeProductImpl(ProductRepository productRepository, CategoryRepository categoryRepository) {
+        this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
+    }
+
+
+    public List<Product> findPriceByCategory(String categoryName, Double price1, Double price2) {
+        List<Product> filteredPrices = new ArrayList<>();
+
+        for (Product product : getAllProducts()) {
+            boolean getNameCategory = product.getCategory().getName().contains(categoryName);
+            if (getNameCategory && checkPrices(price1, price2, product)) {
+                filteredPrices.add(product);
             }
         }
         return filteredPrices;
     }
+
+    private boolean checkPrices(Double price1, Double price2, Product price) {
+        return price.getPrice() >= price1 && price.getPrice() <= price2;
+    }
+
+
+
+
+    private List<Category> getAllCategories() {
+        return categoryRepository.findAll();
+    }
+
+    private List<Product> getAllProducts() {
+        return productRepository.findAll();
+    }
+
 
     public void findDuplicate(List<Product> products, String description, String name, Double price) {
 
@@ -48,4 +75,6 @@ public class ImperativeProductImpl {
         }
         System.out.println(emptyString);
     }
+
+
 }

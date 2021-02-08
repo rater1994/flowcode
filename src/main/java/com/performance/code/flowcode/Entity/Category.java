@@ -34,4 +34,9 @@ public class Category {
         this.name = categoryDto.getName();
     }
 
+    @Override
+    public String toString() {
+        return "\n Category name: " + name;
+    }
+
 }

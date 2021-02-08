@@ -3,12 +3,10 @@ package com.performance.code.flowcode.Controllers.Imperative;
 import com.performance.code.flowcode.Entity.Users;
 import com.performance.code.flowcode.Repository.UsersRepository;
 import com.performance.code.flowcode.util.security.EncryptionUtils;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ImperativeUsersImpl {
@@ -19,19 +17,24 @@ public class ImperativeUsersImpl {
         this.usersRepository = usersRepository;
     }
 
-    public void encryptPasswordImperative(List<Users> users) {
+    public void encryptPasswordImperative() {
+        List<Users> users = usersRepository.findAll();
+
         EncryptionUtils encryptionUtils = new EncryptionUtils();
         for (Users u : users) {
             if (!u.getPassword().startsWith("$"))
                 u.setPassword(encryptionUtils.encoder().encode(u.getPassword()));
+//            usersRepository.save(u);
         }
     }
 
-    public List<Users> findUsername(List<Users> users, String firstCharacters) {
+
+    public List<Users> findUsername(String firstCharacters) {
+        List<Users> users = usersRepository.findAll();
         List<Users> emptyList = new ArrayList<>();
-        for (Users u : users) {
-            if (u.getUsername().contains(firstCharacters)) {
-                emptyList.add(u);
+        for (Users user : users) {
+            if (user.getUsername().contains(firstCharacters)) {
+                emptyList.add(user);
             }
         }
         return emptyList;
@@ -42,7 +45,7 @@ public class ImperativeUsersImpl {
         for (Users allUser : allUsers) {
             allUser.setFirstName(changeFirstLetterToUpper(allUser.getFirstName()));
             allUser.setLastName(changeFirstLetterToUpper(allUser.getLastName()));
-//            usersRepository.save(allUser);
+            usersRepository.save(allUser);
         }
     }
 
@@ -50,11 +53,4 @@ public class ImperativeUsersImpl {
         return String.valueOf(string.charAt(0)).toUpperCase() + String.valueOf(string.substring(1));
     }
 
-
-    //Classic for
-//        for (int i = 0; i < allUsers.size(); i++) {
-//            allUsers.get(i).setLastName(changeFirstLetterToUpper(allUsers.get(i).getLastName()));
-//            allUsers.get(i).setFirstName(changeFirstLetterToUpper(allUsers.get(i).getFirstName()));
-//            usersRepository.save(allUsers.get(i));
-//        }
 }

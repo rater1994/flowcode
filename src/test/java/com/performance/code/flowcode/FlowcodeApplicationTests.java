@@ -105,7 +105,7 @@ class FlowcodeApplicationTests {
         }
     }
 
-    @RepeatedTest(10000)
+    @RepeatedTest(1000)
     void addOnlyUser() {
         Users users = new Users();
         users = podamFactory.manufacturePojo(Users.class);
@@ -114,7 +114,7 @@ class FlowcodeApplicationTests {
         usersRepository.save(users);
     }
 
-    @RepeatedTest(100)
+    @RepeatedTest(10000)
     void testAddProductAndCategory() {
         Product product = new Product();
         product = podamFactory.manufacturePojo(Product.class);
@@ -150,9 +150,8 @@ class FlowcodeApplicationTests {
 //    @RepeatedTest(1)
 //    void encryptPasswordDeclarative() {
 //        List<Users> users = usersRepository.findAll();
-//        DeclarativeUsersImpl declarativeUsers = new DeclarativeUsersImpl();
-//        declarativeUsers.encryptPasswordUsersDec(users);
-////        usersRepository.saveAll(users);
+//        DdeclarativeUsers.encryptPasswordUsersDec(users);
+//        usersRepository.saveAll(users);
 //    }
 
 //    @RepeatedTest(1)
@@ -165,13 +164,13 @@ class FlowcodeApplicationTests {
 
     //------------------------------------------------------------------------------------------------------------------
 
-    @RepeatedTest(1)
-    void findAndSortByPriceDeclarative() {
-        List<Product> products = productRepository.findAll();
-        DeclarativeProductImpl declarativeProduct = new DeclarativeProductImpl();
-        declarativeProduct.sortPrices(products);
-        products.forEach((product) -> System.out.println(product.getPrice()));
-    }
+//    @RepeatedTest(1)
+//    void findAndSortByPriceDeclarative() {
+//        List<Product> products = productRepository.findAll();
+//        DeclarativeProductImpl declarativeProduct = new DeclarativeProductImpl();
+//        declarativeProduct.sortPrices(products);
+//        products.forEach((product) -> System.out.println(product.getPrice()));
+//    }
 
 
     @RepeatedTest(1)
@@ -203,29 +202,28 @@ class FlowcodeApplicationTests {
 //        System.out.println(cyv);
 //
 //    }
+//
+//    @RepeatedTest(1)
+//    void filterPriceFromXtoYDeclarative() {
+//        List<Product> products = productRepository.findAll();
+//        DeclarativeProductImpl declarativeProduct = new DeclarativeProductImpl();
+//        List<Product> prices = declarativeProduct.filterByPrices(products, 50.00, 500.00);
+//        List<Double> d = new ArrayList<>();
+//
+//        for (Product p : prices) {
+//            d.add(p.getPrice());
+//        }
+//
+////        System.out.println(d);
+//
+//    }
 
-    @RepeatedTest(1)
-    void filterPriceFromXtoYDeclarative() {
-        List<Product> products = productRepository.findAll();
-        DeclarativeProductImpl declarativeProduct = new DeclarativeProductImpl();
-        List<Product> prices = declarativeProduct.filterByPrices(products, 50.00, 500.00);
-        List<Double> d = new ArrayList<>();
-
-        for (Product p : prices) {
-            d.add(p.getPrice());
-        }
-
-//        System.out.println(d);
-
-    }
-
-    @RepeatedTest(1)
-    void filterPriceFromXtoYImperative() {
-        List<Product> products = productRepository.findAll();
-        ImperativeProductImpl imperativeProduct = new ImperativeProductImpl();
-        List<Double> prices = imperativeProduct.filterByPrices(products, 50.00, 500.00);
-        System.out.println(prices);
-    }
+//    @RepeatedTest(1)
+//    void filterPriceFromXtoYImperative() {
+//        List<Product> products = productRepository.findAll();
+//        List<Double> prices = imperativeProduct.filterByPrices(products, 50.00, 500.00);
+//        System.out.println(prices);
+//    }
 
 
     @Test(threadPoolSize = 4)
@@ -242,7 +240,7 @@ class FlowcodeApplicationTests {
 
         for (Users u : users) {
             u.setPassword(encryptionUtils.encoder().encode(u.getPassword()));
-            System.out.println("Username: " + u.getFirstName() + " " + u.getPassword());
+//            System.out.println("Username: " + u.getFirstName() + " " + u.getPassword());
         }
     }
 
@@ -264,20 +262,20 @@ class FlowcodeApplicationTests {
         mockDataRepository.save(mockData);
     }
 
-    //----------------------------------------------------------------------------------------------------------------------
-    @RepeatedTest(1)
-    void findDuplicateImperative() {
-        List<Product> products = productRepository.findAll();
-        ImperativeProductImpl imperativeProduct = new ImperativeProductImpl();
-        imperativeProduct.findDuplicate(products, "TESTDescription", "TEST", 420.0);
-    }
+//    //----------------------------------------------------------------------------------------------------------------------
+//    @RepeatedTest(1)
+//    void findDuplicateImperative() {
+//        List<Product> products = productRepository.findAll();
+//        ImperativeProductImpl imperativeProduct = new ImperativeProductImpl();
+//        imperativeProduct.findDuplicate(products, "TESTDescription", "TEST", 420.0);
+//    }
 
-    @RepeatedTest(1)
-    void findDuplicateDeclarative() {
-        List<Product> products = productRepository.findAll();
-        DeclarativeProductImpl d = new DeclarativeProductImpl();
-        d.findDuplicate(products, "TESTDescription", "TEST", 420.0);
-    }
+//    @RepeatedTest(1)
+//    void findDuplicateDeclarative() {
+//        List<Product> products = productRepository.findAll();
+//        DeclarativeProductImpl d = new DeclarativeProductImpl();
+//        d.findDuplicate(products, "TESTDescription", "TEST", 420.0);
+//    }
 
 
     @RepeatedTest(1)
@@ -289,17 +287,17 @@ class FlowcodeApplicationTests {
         }
     }
 
-    @RepeatedTest(1)
-    void checkInconsistentDataImperative() {
-        List<Product> products = productRepository.findAll();
-        List<String> emptyList = new ArrayList<>();
-
-        for (Product p : products) {
-            emptyList.add(p.getDescription());
-        }
-
-        ImperativeProductImpl imperativeProduct = new ImperativeProductImpl();
-        imperativeProduct.checkInconsistentData(emptyList);
-        System.out.println(emptyList);
-    }
+//    @RepeatedTest(1)
+//    void checkInconsistentDataImperative() {
+//        List<Product> products = productRepository.findAll();
+//        List<String> emptyList = new ArrayList<>();
+//
+//        for (Product p : products) {
+//            emptyList.add(p.getDescription());
+//        }
+//
+//        ImperativeProductImpl imperativeProduct = new ImperativeProductImpl();
+//        imperativeProduct.checkInconsistentData(emptyList);
+//        System.out.println(emptyList);
+//    }
 }

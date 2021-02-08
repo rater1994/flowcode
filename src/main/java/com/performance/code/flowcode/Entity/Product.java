@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Product {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
     private String name;
@@ -46,5 +46,15 @@ public class Product {
         this.name = productDto.getName();
         this.price = productDto.getPrice();
         this.category = productDto.getCategory();
+    }
+
+
+    @Override
+    public String toString() {
+        return "ProductID: " + id +
+                " \nDescription: " + description +
+                "\nName:  " + name +
+                "\nPrice: " + price +
+                category + "\n";
     }
 }
