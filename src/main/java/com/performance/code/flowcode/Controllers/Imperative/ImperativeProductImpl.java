@@ -14,7 +14,6 @@ import java.util.List;
 public class ImperativeProductImpl {
 
     private ProductRepository productRepository;
-    private CategoryRepository categoryRepository;
 
     public ImperativeProductImpl(ProductRepository productRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
@@ -36,13 +35,6 @@ public class ImperativeProductImpl {
 
     private boolean checkPrices(Double price1, Double price2, Product price) {
         return price.getPrice() >= price1 && price.getPrice() <= price2;
-    }
-
-
-
-
-    private List<Category> getAllCategories() {
-        return categoryRepository.findAll();
     }
 
     private List<Product> getAllProducts() {

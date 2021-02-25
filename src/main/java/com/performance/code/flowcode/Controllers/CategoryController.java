@@ -33,9 +33,7 @@ public class CategoryController {
     public List<CategoryDto> getAllCategory() {
         List<CategoryDto> categoryDtos = new ArrayList<>();
 
-        categoryRepository.findAll().forEach(category -> {
-            categoryDtos.add(category.toCategoryDto());
-        });
+        categoryRepository.findAll().forEach(category -> categoryDtos.add(category.toCategoryDto()));
 
         return categoryDtos;
     }

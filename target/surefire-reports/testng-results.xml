@@ -2,60 +2,60 @@
 <testng-results skipped="0" failed="0" ignored="0" total="6" passed="6">
   <reporter-output>
   </reporter-output>
-  <suite name="Surefire suite" duration-ms="128" started-at="2021-02-08T17:32:44Z" finished-at="2021-02-08T17:32:44Z">
+  <suite name="Surefire suite" duration-ms="123" started-at="2021-02-08T17:35:53Z" finished-at="2021-02-08T17:35:53Z">
     <groups>
     </groups>
-    <test name="Surefire test" duration-ms="128" started-at="2021-02-08T17:32:44Z" finished-at="2021-02-08T17:32:44Z">
+    <test name="Surefire test" duration-ms="123" started-at="2021-02-08T17:35:53Z" finished-at="2021-02-08T17:35:53Z">
       <class name="com.performance.code.flowcode.TestsProductsMethods.ImperativeProductsTests">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.performance.code.flowcode.TestsProductsMethods.ImperativeProductsTests@536aaa8d]" name="setUp" is-config="true" duration-ms="0" started-at="2021-02-08T17:32:44Z" finished-at="2021-02-08T17:32:44Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.performance.code.flowcode.TestsProductsMethods.ImperativeProductsTests@536aaa8d]" name="setUp" is-config="true" duration-ms="0" started-at="2021-02-08T17:35:53Z" finished-at="2021-02-08T17:35:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="contextLoads()[pri:0, instance:com.performance.code.flowcode.TestsProductsMethods.ImperativeProductsTests@536aaa8d]" name="contextLoads" duration-ms="1" started-at="2021-02-08T17:32:44Z" finished-at="2021-02-08T17:32:44Z">
+        <test-method status="PASS" signature="contextLoads()[pri:0, instance:com.performance.code.flowcode.TestsProductsMethods.ImperativeProductsTests@536aaa8d]" name="contextLoads" duration-ms="0" started-at="2021-02-08T17:35:53Z" finished-at="2021-02-08T17:35:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- contextLoads -->
       </class> <!-- com.performance.code.flowcode.TestsProductsMethods.ImperativeProductsTests -->
       <class name="com.performance.code.flowcode.FlowcodeApplicationTests">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.performance.code.flowcode.FlowcodeApplicationTests@646d64ab]" name="setUp" is-config="true" duration-ms="8" started-at="2021-02-08T17:32:44Z" finished-at="2021-02-08T17:32:44Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.performance.code.flowcode.FlowcodeApplicationTests@646d64ab]" name="setUp" is-config="true" duration-ms="8" started-at="2021-02-08T17:35:53Z" finished-at="2021-02-08T17:35:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="contextLoads()[pri:0, instance:com.performance.code.flowcode.FlowcodeApplicationTests@646d64ab]" name="contextLoads" duration-ms="0" started-at="2021-02-08T17:32:44Z" finished-at="2021-02-08T17:32:44Z">
+        <test-method status="PASS" signature="contextLoads()[pri:0, instance:com.performance.code.flowcode.FlowcodeApplicationTests@646d64ab]" name="contextLoads" duration-ms="1" started-at="2021-02-08T17:35:53Z" finished-at="2021-02-08T17:35:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- contextLoads -->
-        <test-method status="PASS" signature="testInvocationCount()[pri:0, instance:com.performance.code.flowcode.FlowcodeApplicationTests@646d64ab]" name="testInvocationCount" duration-ms="101" started-at="2021-02-08T17:32:44Z" finished-at="2021-02-08T17:32:44Z">
+        <test-method status="PASS" signature="testInvocationCount()[pri:0, instance:com.performance.code.flowcode.FlowcodeApplicationTests@646d64ab]" name="testInvocationCount" duration-ms="100" started-at="2021-02-08T17:35:53Z" finished-at="2021-02-08T17:35:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testInvocationCount -->
       </class> <!-- com.performance.code.flowcode.FlowcodeApplicationTests -->
       <class name="com.performance.code.flowcode.TestsUsersMethods.ImperativeUserTests">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.performance.code.flowcode.TestsUsersMethods.ImperativeUserTests@1f57539]" name="setUp" is-config="true" duration-ms="1" started-at="2021-02-08T17:32:44Z" finished-at="2021-02-08T17:32:44Z">
+        <test-method status="PASS" signature="contextLoads()[pri:0, instance:com.performance.code.flowcode.TestsUsersMethods.ImperativeUserTests@1f57539]" name="contextLoads" duration-ms="0" started-at="2021-02-08T17:35:53Z" finished-at="2021-02-08T17:35:53Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- contextLoads -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.performance.code.flowcode.TestsUsersMethods.ImperativeUserTests@1f57539]" name="setUp" is-config="true" duration-ms="0" started-at="2021-02-08T17:35:53Z" finished-at="2021-02-08T17:35:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="contextLoads()[pri:0, instance:com.performance.code.flowcode.TestsUsersMethods.ImperativeUserTests@1f57539]" name="contextLoads" duration-ms="0" started-at="2021-02-08T17:32:44Z" finished-at="2021-02-08T17:32:44Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- contextLoads -->
       </class> <!-- com.performance.code.flowcode.TestsUsersMethods.ImperativeUserTests -->
       <class name="com.performance.code.flowcode.TestsUsersMethods.DeclarativeUserTests">
-        <test-method status="PASS" signature="contextLoads()[pri:0, instance:com.performance.code.flowcode.TestsUsersMethods.DeclarativeUserTests@e320068]" name="contextLoads" duration-ms="0" started-at="2021-02-08T17:32:44Z" finished-at="2021-02-08T17:32:44Z">
+        <test-method status="PASS" signature="contextLoads()[pri:0, instance:com.performance.code.flowcode.TestsUsersMethods.DeclarativeUserTests@e320068]" name="contextLoads" duration-ms="0" started-at="2021-02-08T17:35:53Z" finished-at="2021-02-08T17:35:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- contextLoads -->
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.performance.code.flowcode.TestsUsersMethods.DeclarativeUserTests@e320068]" name="setUp" is-config="true" duration-ms="0" started-at="2021-02-08T17:32:44Z" finished-at="2021-02-08T17:32:44Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.performance.code.flowcode.TestsUsersMethods.DeclarativeUserTests@e320068]" name="setUp" is-config="true" duration-ms="0" started-at="2021-02-08T17:35:53Z" finished-at="2021-02-08T17:35:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
       </class> <!-- com.performance.code.flowcode.TestsUsersMethods.DeclarativeUserTests -->
       <class name="com.performance.code.flowcode.TestsProductsMethods.DeclarativeProductsTests">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.performance.code.flowcode.TestsProductsMethods.DeclarativeProductsTests@59e5ddf]" name="setUp" is-config="true" duration-ms="0" started-at="2021-02-08T17:32:44Z" finished-at="2021-02-08T17:32:44Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.performance.code.flowcode.TestsProductsMethods.DeclarativeProductsTests@59e5ddf]" name="setUp" is-config="true" duration-ms="0" started-at="2021-02-08T17:35:53Z" finished-at="2021-02-08T17:35:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="contextLoads()[pri:0, instance:com.performance.code.flowcode.TestsProductsMethods.DeclarativeProductsTests@59e5ddf]" name="contextLoads" duration-ms="0" started-at="2021-02-08T17:32:44Z" finished-at="2021-02-08T17:32:44Z">
+        <test-method status="PASS" signature="contextLoads()[pri:0, instance:com.performance.code.flowcode.TestsProductsMethods.DeclarativeProductsTests@59e5ddf]" name="contextLoads" duration-ms="0" started-at="2021-02-08T17:35:53Z" finished-at="2021-02-08T17:35:53Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- contextLoads -->

@@ -29,11 +29,7 @@ public class ProductController {
     @GetMapping("/getallproducts")
     public List<ProductDto> getAllProducts() {
         List<ProductDto> productDtos = new ArrayList<>();
-
-        productRepository.findAll().forEach(product -> {
-            productDtos.add(product.toProductDto());
-        });
-
+        productRepository.findAll().forEach(product -> productDtos.add(product.toProductDto()));
         return productDtos;
     }
 
